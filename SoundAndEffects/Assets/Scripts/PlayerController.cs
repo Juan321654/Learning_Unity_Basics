@@ -4,7 +4,8 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
     private const float RaycastMaxDistance = 0.1f;
-    public float jumpForce = 10f;
+    private float jumpForce = 7f;
+    public bool gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -44,5 +45,15 @@ public class PlayerController : MonoBehaviour
             return true; // Grounded
         }
         return false; // Not grounded
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag(TagManager.Obstacle)) // from the custom class to get autocomplete for tags
+        {
+            gameOver = true;
+            Debug.Log("Game Over");
+        }
     }
 }
