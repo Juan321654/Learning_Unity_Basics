@@ -3,14 +3,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
+    private Animator playerAnimation;
     private const float RaycastMaxDistance = 0.1f;
-    private float jumpForce = 7f;
+    private float jumpForce = 400f;
     public bool gameOver;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAnimation = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -23,9 +25,11 @@ public class PlayerController : MonoBehaviour
     {
         // Perform raycast to check if the player is grounded
         if (!IsGrounded()) return;
+        if (gameOver) return;
 
         // If the player is grounded, apply the jump force
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        playerAnimation.SetTrigger("Jump_trig");
     }
 
     // Alternative to using OnCollisionEnter, Raycast provides better precision for ground detection.
@@ -53,7 +57,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag(TagManager.Obstacle)) // from the custom class to get autocomplete for tags
         {
             gameOver = true;
-            Debug.Log("Game Over");
+            Debug.Log("Game Over!");
+            playerAnimation.SetBool("Death_b", true);
+            playerAnimation.SetInteger("DeathType_int", 1);
         }
     }
 }

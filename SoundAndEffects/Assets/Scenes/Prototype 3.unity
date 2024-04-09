@@ -339,6 +339,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 8820216750271589121, guid: 83428fca6dfdaeb4183bee3d30525b48, type: 3}
+  spawnPosition: {x: 20, y: 0, z: 0}
+  spawnDelay: 2
+  spawnInterval: 2
 --- !u!4 &601987864
 Transform:
   m_ObjectHideFlags: 0
@@ -600,7 +603,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793569069}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 60
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
