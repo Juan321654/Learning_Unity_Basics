@@ -4,21 +4,40 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
     private Animator playerAnimation;
+    public AudioSource playerAudioSource;
     private const float RaycastMaxDistance = 0.1f;
     private float jumpForce = 400f;
     public bool gameOver;
+    
+    [Header("Particles")]
+    public ParticleSystem explosionParticles;
+    public ParticleSystem dirtParticle;
+    
+    [Header("Sounds")]
+    public AudioClip jumpClipSound;
+    public AudioClip crashClipSound;
+    private float clipVolume = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         playerAnimation = GetComponent<Animator>();
+        playerAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (IsGrounded() && !gameOver)
+        {
+            // Check if the dirtParticle is not already playing
+            if (!dirtParticle.isPlaying)
+            {
+                dirtParticle.Play(); // Start playing the dirt particles
+            }
+        }
     }
 
     void Jump()
@@ -30,6 +49,8 @@ public class PlayerController : MonoBehaviour
         // If the player is grounded, apply the jump force
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         playerAnimation.SetTrigger("Jump_trig");
+        dirtParticle.Stop();
+        playerAudioSource.PlayOneShot(jumpClipSound, clipVolume);
     }
 
     // Alternative to using OnCollisionEnter, Raycast provides better precision for ground detection.
@@ -57,9 +78,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag(TagManager.Obstacle)) // from the custom class to get autocomplete for tags
         {
             gameOver = true;
-            Debug.Log("Game Over!");
             playerAnimation.SetBool("Death_b", true);
             playerAnimation.SetInteger("DeathType_int", 1);
+            explosionParticles.Play();
+            dirtParticle.Stop();
+            playerAudioSource.PlayOneShot(crashClipSound, clipVolume + 1.5f);
         }
     }
 }
