@@ -21,3 +21,7 @@ This document provides an overview of the key features and challenges incorporat
 -   **Jumping The Fence**: This feature has players controlling a farmer jumping over fences against a side-scrolling background. It showcases the game's physics and character control, as well as providing dynamic background music and sound effects to enhance the experience.
     
 -   **Challenge 3: Balloon Bonanza**: Players control a balloon, aiming to catch money while dodging bombs. This challenge tests players' maneuvering skills and reaction times, all the while being accompanied by thematic sound effects and visual effects to signify success and failures.
+
+## Gameplay Mechanics
+
+- **Platform Zumo fight**: Floating Platform Adventure: Players control a sphere on floating platforms, with a camera that follows and aligns with the sphere's movements. Gameplay involves collecting power-ups and engaging in zumo-style combat with NPCs. The difficulty and number of enemies increase with each round, challenging the player's strategy and agility.
