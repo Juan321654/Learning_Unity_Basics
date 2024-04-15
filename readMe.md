@@ -25,3 +25,9 @@ This document provides an overview of the key features and challenges incorporat
 ## Gameplay Mechanics
 
 - **Platform Zumo fight**: Floating Platform Adventure: Players control a sphere on floating platforms, with a camera that follows and aligns with the sphere's movements. Gameplay involves collecting power-ups and engaging in zumo-style combat with NPCs. The difficulty and number of enemies increase with each round, challenging the player's strategy and agility.
+
+-   **Challenge 4: Soccer**: Stop soccer balls from reaching the goal.
+
+## User Interface
+
+- **Fruit Ninja (but with barrels)**: 3D barrels that are clickable and the scores goes up in a 2D view, while the user has the UI to update the score and be able to reset game etc.
