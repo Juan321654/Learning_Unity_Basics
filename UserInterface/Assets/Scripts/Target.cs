@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
     private const float maxSpeed = 16f;
     private const float maxTorque = 10f;
     private const float xRange = 4f;
-    private const float ySpawnPos = -2f;
+    private const float ySpawnPos = -0f;
 
     public ParticleSystem explosionParticle;
     public int pointValue;
@@ -31,6 +31,8 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!gameManager.isGameActive) return;
+        
         Destroy(gameObject);
         Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         if (gameManager != null)
@@ -42,6 +44,10 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        if (!gameObject.CompareTag("Bad"))
+        {
+            gameManager.GameOver();
+        }
     }
 
     private Vector3 RandomForce()
