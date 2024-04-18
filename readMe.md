@@ -33,3 +33,5 @@ This document provides an overview of the key features and challenges incorporat
 ## User Interface
 
 - **Fruit Ninja (but with barrels)**: 3D barrels that are clickable and the scores goes up in a 2D view, while the user has the UI to update the score and be able to reset game etc.
+
+- **Challenge 5: Grid Food Clicker**: Similar to fruit ninja but clicking food on a grid instead of it jumping from the bottom of the screen
